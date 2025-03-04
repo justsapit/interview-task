@@ -2,6 +2,7 @@
 // https://nextjs.org/docs
 
 import Head from 'next/head';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,6 +18,12 @@ export default function Home() {
             <span className='text-[hsl(280,100%,70%)]'>JUST SAP IT!</span>
             <br />
             <span>Interview</span> Task
+            <div className="flex flex-col items-center">
+        <h1 className="text-2xl font-bold">Welcome to the Todo App</h1>
+        <Link href="/todos" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+          Go to Todos
+        </Link>
+      </div>
           </h1>
         </div>
       </main>

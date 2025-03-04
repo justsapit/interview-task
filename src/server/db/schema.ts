@@ -1,9 +1,7 @@
-// More information can be found in the Drizzle docs
-// https://orm.drizzle.team/docs/overview
+import { pgTable, serial, text, boolean } from "drizzle-orm/pg-core";
 
-import { pgTable, serial } from 'drizzle-orm/pg-core';
-
-export const todo = pgTable('todo', {
-  id: serial('id').primaryKey(),
-  // add columns here
+export const todos = pgTable("todos", {
+  id: serial("id").primaryKey(),
+  text: text("text").notNull(),
+  completed: boolean("completed").default(false),
 });
