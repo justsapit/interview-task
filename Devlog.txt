@@ -1,0 +1,10 @@
+schema.ts -> changes(variables for Docker)
+Creating and implementing todo.ts in api/routers/
+Coming up with some ideas to make the site look even better (I felt like coding some css to globals 
+and using them instead of using tailwind)
+Changing index.tsx and Creating todos.tsx
+Getting promises to work, changing "Any" to "Async"
+Building the project in order to see what can be done afterall
+Finally, creating the yml, and the dockerfile
+Checking if everything in its place
+Committing all, and its open for a pull.
