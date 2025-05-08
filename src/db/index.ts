@@ -7,7 +7,7 @@ import * as schema from "./schema";
  * update.
  */
 const globalForDb = globalThis as unknown as {
-  pool: Pool | undefined;
+  pool: typeof Pool;
 };
 
 const conn =

@@ -10,18 +10,18 @@ import { makeQueryClient } from "./query-client";
 import type { AppRouter } from "./routers/_app";
 
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
-let clientQueryClientSingleton: QueryClient;
 
+let browserQueryClient: QueryClient;
 function getQueryClient() {
   if (typeof window === "undefined") {
     // Server: always make a new query client
     return makeQueryClient();
   }
   // Browser: use singleton pattern to keep the same query client
-  if (!clientQueryClientSingleton) {
-    clientQueryClientSingleton = makeQueryClient();
+  if (!browserQueryClient) {
+    browserQueryClient = makeQueryClient();
   }
-  return clientQueryClientSingleton;
+  return browserQueryClient;
 }
 
 function getUrl() {
@@ -38,6 +38,7 @@ export function TRPCClientProvider(
   }>
 ) {
   const queryClient = getQueryClient();
+
   const [trpcClient] = useState(() =>
     createTRPCClient<AppRouter>({
       links: [
@@ -48,11 +49,12 @@ export function TRPCClientProvider(
       ],
     })
   );
+
   return (
-    <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
         {props.children}
-      </QueryClientProvider>
-    </TRPCProvider>
+      </TRPCProvider>
+    </QueryClientProvider>
   );
 }
