@@ -1,5 +1,5 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { type NodePgClient, drizzle } from "drizzle-orm/node-postgres";
+import pg from "pg";
 import * as schema from "./schema";
 
 /**
@@ -7,11 +7,12 @@ import * as schema from "./schema";
  * update.
  */
 const globalForDb = globalThis as unknown as {
-  pool: typeof Pool;
+  pool: NodePgClient;
 };
 
 const conn =
-  globalForDb.pool ?? new Pool({ connectionString: process.env.DATABASE_URL });
+  globalForDb.pool ??
+  new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
 if (process.env.NODE_ENV !== "production") {
   globalForDb.pool = conn;
