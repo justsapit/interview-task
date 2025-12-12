@@ -19,7 +19,7 @@
     "client-only": "^0.0.1",
     "drizzle-orm": "^0.43.1",
     "drizzle-zod": "^0.7.1",
-    "next": "15.3.6",
+    "next": "15.3.8",
     "pg": "^8.15.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
